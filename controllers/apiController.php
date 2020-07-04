@@ -68,6 +68,59 @@
 
 		}
 
+
+		public  function  editar_pqr(){
+
+			if ($this->method == 'POST') {
+				$key = $_POST['key'];
+				$id = (!empty($_POST['id'])) ? $_POST['id'] : '';
+				$id = (int)$id;
+				if ($user = $this->auth()) {
+					$r = (object)[
+						'status' => 'error',
+						'message' => 'token no authorizado para relaizar esa accion',
+						'code' => 401
+					];
+
+					if ($user->role == 'administrador') {
+						$error = false;
+						if(empty($id) || $id == 0){
+							$r = (object)[
+								'status' => 'error',
+								'message' => 'el valor de id se espera que sea numerico entero ',
+								'code' => 400
+							];
+
+							$error = true;
+						}
+
+						if(!$error) {
+
+							
+
+
+
+
+							$data = $this->pqrM->get_pqrs($id);
+							$r    = (object)[
+								'status' => 'ok',
+								'data'   => $data,
+								'code'   => 200
+							];
+						}
+					}
+				}
+
+				http_response_code($r->code);
+				die(json_encode($r));
+			}
+
+			http_response_code(403);
+
+
+		}
+
+
 		public function crear_pqr() {
 
 			if ($this->method == 'POST') {
@@ -129,7 +182,8 @@
 									'user_id' => $user->user_id,
 									'asunto'  => $asunto,
 									'creado'	  => date('Y-m-d H:i:s'),
-									'vence'   => $vence
+									'vence'   => $vence,
+									'estado'  => 1,
 
 								]);
 

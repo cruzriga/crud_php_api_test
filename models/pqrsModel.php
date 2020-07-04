@@ -33,11 +33,16 @@
 
 
         	$total = "SELECT COUNT(*) total FROM pqrs p $WHERE";
+        	$data = $this->query($list);
 
+        	$data = array_map(function ($p){
+				$p->nombre_estado = $this->get_estado($p->estado);
+				return $p;
+			}, $data);
 
         	return (object)[
         		'total' => (int) $this->query($total)[0]->total,
-				'data' => $this->query($list)
+				'data' => $data
 			];
 
 
@@ -76,6 +81,14 @@
 		*/
 
 
+		}
+
+		function get_estado($estado){
+        	switch ($estado){
+				case 1 : return 'NUEVO';break;
+				case 2 : return 'EN EJECUCION';break;
+				case 3 : return 'CERRADO' ;break;
+			}
 		}
 
 	}

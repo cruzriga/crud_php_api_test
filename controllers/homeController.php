@@ -9,11 +9,12 @@
 
 		public function index(){
 			$template = ($this->user->role == 'cliente')? 'user_dashboard' : 'main';
-
+			$this->loadModel('pqrs');
 			$this->render('header');
+			$pqrs = $this->pqrs->get_pqrs();
 			$this->render($template, [
 				'body' => 'Panel administrador',
-				'pqrs' => []
+				'pqrs' => $pqrs->data
 			]);
 			$this->render('footer');
 		}
