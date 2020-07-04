@@ -43,5 +43,22 @@
 			return $this->query($sql);
 		}
 
+		function checkApikey($key){
+			$key = $this->db->real_escape_string($key);
+				$sql = "SELECT 
+					u.user_id,
+       				u.username,
+       				u.nombre,
+       				u.role
+       				FROM usuarios u
+					WHERE u.token = '$key'
+				";
+
+			if(count($user = $this->query($sql)) == 1){
+				return  $user[0];
+			}
+
+			return false;
+		}
 
 	}

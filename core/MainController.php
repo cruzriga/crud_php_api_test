@@ -14,7 +14,6 @@
 
 		function loadController($controller, $alias = "", $parametros = []){
 			$controller = $controller.'Controller';
-
 			if(!is_readable($path = CONTROLLERS.$controller.'.php')) {
 				return false;
 			}

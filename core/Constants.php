@@ -19,7 +19,7 @@ define('DB_PORT',$config->db_port);
 define('DB_COLLATION',$config->db_collation);
 define('DEFAULT_CONTROLLER', $config->default_controller);
 define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', realpath(dirname($_SERVER['DOCUMENT_ROOT'])).DS.$config->path.DS);
+define('ROOT', realpath($_SERVER['DOCUMENT_ROOT']).DS.$config->path.DS);
 define('CORE', ROOT . 'core' . DS);
 define('MODELS', ROOT . 'models' . DS);
 define('VIEWS', ROOT . 'views' . DS);
@@ -30,4 +30,3 @@ define('CONTROLLERS', ROOT . 'controllers' . DS);
 define('PQR_NUEVO', 1);
 define('PQR_EN_EJECUCION', 2);
 define('PQR_CERRADO', 3);
-

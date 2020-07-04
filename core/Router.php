@@ -6,6 +6,7 @@
 		public  $method;
 
 		public function __construct() {
+
 			parent::__construct();
 			$this->uri 	= $_SERVER['REQUEST_URI'];
 			$this->method = $_SERVER['REQUEST_METHOD'];
