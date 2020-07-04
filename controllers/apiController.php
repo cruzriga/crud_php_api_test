@@ -18,11 +18,6 @@
 
 		}
 
-		public function get() {
-
-
-		}
-
 		public function pqrs() {
 
 			if ($this->method == 'POST') {
@@ -67,7 +62,6 @@
 			http_response_code(403);
 
 		}
-
 
 		public  function  actualizar_estado(){
 
@@ -145,7 +139,6 @@
 
 
 		}
-
 
 		public function crear_pqr() {
 
@@ -235,11 +228,6 @@
 
 		}
 
-
-		private function post($index){
-			return (isset($_POST[$index])) ? $_POST[$index] : null;
-		}
-
 		private function auth() {
 
 			$key = $_POST['key'];
@@ -264,5 +252,9 @@
 			}
 
 			return false;
+		}
+
+		private function post($index){
+			return (isset($_POST[$index])) ? $_POST[$index] : null;
 		}
 	}
