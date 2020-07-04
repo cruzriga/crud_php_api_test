@@ -11,28 +11,11 @@
  Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 04/07/2020 08:54:23
+ Date: 04/07/2020 09:51:23
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for estados_pqr
--- ----------------------------
-DROP TABLE IF EXISTS `estados_pqr`;
-CREATE TABLE `estados_pqr`  (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id_estado`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of estados_pqr
--- ----------------------------
-INSERT INTO `estados_pqr` VALUES (1, 'NUEVO');
-INSERT INTO `estados_pqr` VALUES (2, 'EN EJECUCIÓN');
-INSERT INTO `estados_pqr` VALUES (3, 'CERRADO');
 
 -- ----------------------------
 -- Table structure for pqrs
@@ -46,13 +29,17 @@ CREATE TABLE `pqrs`  (
   `asunto` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
   `creado` datetime(0) NULL DEFAULT NULL,
   `vence` date NULL DEFAULT NULL,
-  PRIMARY KEY (`pqr_id`) USING BTREE
+  PRIMARY KEY (`pqr_id`) USING BTREE,
+  INDEX `fk_tipo_idx`(`tipo_id`) USING BTREE,
+  INDEX `fk_user_idx`(`user_id`) USING BTREE,
+  CONSTRAINT `fk_tipo` FOREIGN KEY (`tipo_id`) REFERENCES `tipo_pqr` (`tipo_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pqrs
 -- ----------------------------
-INSERT INTO `pqrs` VALUES (1, 1, 2, 1, 'una petición ', '2020-07-04 04:58:18', '2020-07-14');
+INSERT INTO `pqrs` VALUES (1, 1, 2, 2, 'una petición ', '2020-07-04 04:58:18', '2020-07-14');
 INSERT INTO `pqrs` VALUES (2, 1, 2, 1, 'hola mundo', '2020-07-04 15:26:20', '2020-07-11');
 INSERT INTO `pqrs` VALUES (3, 2, 2, 1, 'prueba de pqr', '2020-07-04 15:29:27', '2020-07-07');
 INSERT INTO `pqrs` VALUES (4, 3, 2, 1, 'prueba de pqr', '2020-07-04 15:30:37', '2020-07-06');
