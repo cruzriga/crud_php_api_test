@@ -1,0 +1,55 @@
+<h1>
+	PQR's
+</h1>
+
+<div class="btn-toolbar d-flex justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+	<div class="btn-group mr-2" role="group" aria-label="First group">
+		<button type="button" class="btn btn-outline-secondary"><i class="fa fa-plus"></i> Agregar nueva pqr</i></button>
+	</div>
+
+	<div class="btn-group float-lg-right " role="group" aria-label="Third group">
+		<button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-excel"></i> </i></button>
+		<button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-pdf"></i> </i></button>
+		<button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-word"></i> </i></button>
+
+	</div>
+</div>
+
+<div class="row my-4">
+	<div class="col-12">
+		<table class="table">
+			<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Tipo </th>
+				<th scope="col">Usuario</th>
+				<th scope="col">Asunto</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Creado</th>
+				<th scope="col">vence</th>
+				<th scope="col" class="text-right"><i class="fa fa-ellipsis-v"></i></th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($pqrs as $pqr): ?>
+				<tr>
+					<th scope="row"><?= $pqr->pqr_id?></th>
+					<td><?= $pqr->tipo ?></td>
+					<td><?= $pqr->usuario?></td>
+					<td><?= $pqr->asunto?></td>
+					<td><?= $pqr->estado?></td>
+					<td><?= $pqr->creado?></td>
+					<td><?= $pqr->fecha_limite?></td>
+
+					<td class="text-right">
+						<div class="btn-group mr-2" role="group" aria-label="First group">
+							<button type="button" class="btn btn-outline-secondary"><i class="fa fa-pen"></i> </button>
+							<button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+						</div>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang = "es">
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8">
+	<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+	<title>PQRs Test</title>
+	<link rel = "stylesheet" type = "text/css" href = "<?= BASE_URL?>/plugins/fontawesome/css/all.min.css?v=5">
+	<link rel = "stylesheet" type = "text/css" href = "<?= BASE_URL?>/plugins/bs4/bootstrap.min.css?v=4.2">
+	<link rel = "stylesheet" type = "text/css" href = "<?= BASE_URL?>/plugins/sweetalert2/sweetalert2.min.css">
+
+	<link rel = "stylesheet" type = "text/css" href = "<?= BASE_URL?>/css/main.css">
+
+	<script src = "<?= BASE_URL?>/plugins/jquery3.4.min.js"></script>
+	<script src = "<?= BASE_URL?>/plugins/bs4/bootstrap.bundle.min.js?v=4.2"></script>
+	<script src = "<?= BASE_URL?>/plugins/mustache/jquery.mustache.js"></script>
+	<script src = "<?= BASE_URL?>/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src = "<?= BASE_URL ?>/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+	<script src = "<?= BASE_URL?>/js/helpers.js"></script>
+	<script type="application/javascript">
+        var BASE_URL = "<?= BASE_URL?>";
+	</script>
+
+
+</head>
+<body>
+<div id = "loading" class = "loading" style = "display: none; right: 0">
+	<div class = "w-100">
+		<h2><i class = "fas fa-circle-notch fa-spin fa-lg"></i> Cargando...</h2>
+	</div>
+</div>
+<div class="">
+	<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+		<a href="/" class="navbar-brand">PQR Soft</a>
+		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div id="navbarCollapse" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li class="nav-item">
+					<a href="/" class="nav-link">Inicio</a>
+				</li>
+                <?php if($user->role == 'administrador') : ?>
+				<li class="nav-item">
+					<a href="/usuarios" class="nav-link">Usuarios</a>
+				</li>
+				<?php endif; ?>
+			</ul>
+			<ul class="nav navbar-nav ml-auto">
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $user->username ?></a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="/login/logout" class="dropdown-item">Salir</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
+<div class="container py-4">

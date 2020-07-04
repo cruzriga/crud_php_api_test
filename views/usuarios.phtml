@@ -1,0 +1,97 @@
+<h1>
+    Usuarios
+</h1>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-outline-secondary"><i class="fa fa-plus"></i> Agregar nuevo</i></button>
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="Second group">
+
+     </div>
+    <div class="btn-group" role="group" aria-label="Third group">
+
+    </div>
+</div>
+
+<div class="row my-4">
+    <div class="col-12">
+        <table class="table" id="tabla_usuarios">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Role</th>
+                <th scope="col" class="text-right"><i class="fa fa-ellipsis-v"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($usuarios as $usuario): ?>
+            <tr>
+                <th scope="row"><?= $usuario->user_id?></th>
+                <td><?= $usuario->username?></td>
+                <td><?= $usuario->nombre?></td>
+                <td><?= $usuario->role?></td>
+                <td class="text-right">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-outline-secondary"><i class="fa fa-pen"></i> </button>
+                        <button type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tabla_usuarios").dataTable({
+                                           pagingType   : "full_numbers",
+                                           dom         :"<'content'" +
+                                                        "   <'t_top'"+
+                                                        "       <'row justify-content-between align-items-end'" +
+                                                        "           <'col-auto'f>" +
+                                                        "           <'col-auto'l>" +
+                                                        "       >" +
+                                                        "       <'row mb-2'" +
+                                                        "            <'col-12'i>" +
+                                                        "       >" +
+                                                        "   >" +
+                                                        "   <'row dt-table-wrapper justify-content-between'" +
+                                                        "       <'col-12'rt>" +
+                                                        "   >" +
+                                                        "   <'t_top'"+
+                                                        "       <'row justify-content-center'" +
+                                                        "           <'col-auto'p>" +
+                                                        "       >" +
+                                                        "   >" +
+                                                        ">",
+                                           language: {
+                                               "sProcessing":     $("#loading-tmp").html(),
+                                               "sLengthMenu":     "Mostrar: _MENU_",
+                                               "sZeroRecords":    "<h5 class=\"no_results\">No se encontraron resultados</h5>",
+                                               "sEmptyTable":     $("#empty-tmp").html(),
+                                               "sInfo":           "<span>_TOTAL_ Registros (registros del _START_ al _END_)</span>",
+                                               "sInfoEmpty":      "Sin Registros",
+                                               "sInfoFiltered":   "<i>(filtrado de un total de _MAX_ registros)</i>",
+                                               "sInfoPostFix":    "",
+                                               "sSearch":         "Buscar: ",
+                                               "sUrl":            "",
+                                               "sInfoThousands":  ",",
+                                               "sLoadingRecords": $("#loading-tmp").html(),
+                                               "oPaginate": {
+                                                   "sFirst":    "<i class=\"fas fa-angle-double-left \"></i>",
+                                                   "sLast":     "<i class=\"fas fa-angle-double-right \"></i>",
+                                                   "sNext":     "<i class=\"fas fa-angle-right \"></i>",
+                                                   "sPrevious": "<i class=\"fas fa-angle-left \"></i>"
+                                               },
+                                               "oAria": {
+                                                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                               }
+                                           }
+                                       });
+    });
+
+</script>
