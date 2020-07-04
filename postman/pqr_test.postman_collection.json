@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "dd5558b5-565d-4143-8b57-c544ec05cd42",
+		"name": "pqr_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost/api/pqrs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "prv_e10adc3949ba59abbe56e057f20f883e",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/pqrs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"pqrs"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "12346",
+							"disabled": true
+						}
+					]
+				},
+				"description": "obtine la lista de pqrs "
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/pqrs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "prv_e10adc3949ba59abbe56e057f20f883e",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/pqrs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"pqrs"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "consultar pqr por id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/api/crear_pqr/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "prv_e10adc3949ba59abbe56e057f20f883e",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "asunto",
+							"value": "prueba de pqr",
+							"type": "text"
+						},
+						{
+							"key": "usuario",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/crear_pqr/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"crear_pqr",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "crear pqr "
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
