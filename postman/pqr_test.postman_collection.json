@@ -136,6 +136,53 @@
 				"description": "crear pqr "
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost/api/actualizar_estado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "prv_e10adc3949ba59abbe56e057f20f883e",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/api/actualizar_estado",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"actualizar_estado"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "12346",
+							"disabled": true
+						}
+					]
+				},
+				"description": "acutalizar estado de una pqr"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

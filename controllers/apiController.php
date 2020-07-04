@@ -69,11 +69,12 @@
 		}
 
 
-		public  function  editar_pqr(){
+		public  function  actualizar_estado(){
 
 			if ($this->method == 'POST') {
 				$key = $_POST['key'];
 				$id = (!empty($_POST['id'])) ? $_POST['id'] : '';
+				$estado   = (!empty($_POST['estado'])) ? $_POST['estado'] : '';
 				$id = (int)$id;
 				if ($user = $this->auth()) {
 					$r = (object)[
@@ -94,19 +95,44 @@
 							$error = true;
 						}
 
+
 						if(!$error) {
 
-
-
-
-
-
-							$data = $this->pqrM->get_pqrs($id);
-							$r    = (object)[
-								'status' => 'ok',
-								'data'   => $data,
-								'code'   => 200
+							$r = (object)[
+								'status' => 'error',
+								'message' => 'se encotraron errores al intentar procesar la solicitud ',
+								'code' => 400,
+								'data' =>[]
 							];
+
+							if(!in_array($estado, ['1','2','3'])){
+								$r->data[] = 'estado invalido';
+								$error = true;
+							}
+
+							$pqr = $this->pqrM->get_pqrs($id);
+
+							if($pqr->total < 1 ){
+								$r->data[] = 'no se encontro la pqr';
+								$error = true;
+							}
+
+							if(!$error){
+								$pqr = $pqr->data[0];
+								if(($pqr->estado  == '1' && $estado != '2' ) || ($pqr->estado  == '2' && $estado != '3' )){
+									$r->data[] = 'estado invalido para esta pqr';
+									$error = true;
+								}
+
+								if(!$error){
+									$this->pqrM->actualizar_estado($id, $estado);
+									$r    = (object)[
+										'status' => 'ok',
+										'data'   => $this->pqrM->get_pqrs($id),
+										'code'   => 200
+									];
+								}
+							}
 						}
 					}
 				}

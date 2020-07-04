@@ -91,4 +91,8 @@
 			}
 		}
 
+		function actualizar_estado($id, $estado){
+        	return $this->update('pqrs',['estado' => $estado], "pqr_id = '$id'");
+		}
+
 	}
