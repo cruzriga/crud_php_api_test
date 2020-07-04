@@ -106,18 +106,43 @@
 							$r->data[] = 'el campo tipo es obligatorio ';
 							$error = true;
 						}
-						if(!$error) {
-							if ($this->pqrM->get_tipo($tipo)) {
 
+						if(!$error) {
+							if (empty($tipo_data = $this->pqrM->get_tipo($tipo))) {
+								$r->data[] = 'no se reconoce el tipo de pqr';
+								$error = true;
+							}
+
+							if (empty($user= $this->users->get_user_by_id($usuario))) {
+								$r->data[] = 'no se reconoce el tipo de pqr';
+								$error = true;
 							}
 						}
 
 						if(!$error) {
-							$r = (object)[
-								'status' => 'ok',
-								'data'   => $_POST,
-								'code'   => 200
-							];
+							$dias = $tipo_data[0]->dias;
+							$vence = date('Y-m-d', strtotime("now + $dias days"));
+
+
+							$id = $this->pqrM->create([
+									'tipo_id' => $tipo,
+									'user_id' => $user->user_id,
+									'asunto'  => $asunto,
+									'creado'	  => date('Y-m-d H:i:s'),
+									'vence'   => $vence
+
+								]);
+
+							if(!empty($id)) {
+								$data = $this->pqrM->get_pqrs($id);
+
+								$r = (object)[
+									'status' => 'ok',
+									'data'   => $data,
+									'code'   => 200
+								];
+							}
+
 						}
 					}
 				}

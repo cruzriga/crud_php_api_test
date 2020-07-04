@@ -61,4 +61,23 @@
 			return false;
 		}
 
+		function get_user_by_id($id){
+
+			$key = $this->db->real_escape_string($id);
+			$sql = "SELECT 
+					u.user_id,
+       				u.username,
+       				u.nombre,
+       				u.role
+       				FROM usuarios u
+					WHERE u.user_id = '$id'
+				";
+
+			if(count($user = $this->query($sql)) == 1){
+				return  $user[0];
+			}
+
+			return false;
+
+		}
 	}

@@ -80,7 +80,6 @@
 			$VALUES = implode(",", $VALUES);
 			$SQL    = "INSERT INTO $table ($COLS) VALUES ($VALUES)";
 
-
 			if ($this->db->query($SQL)) {
 				return $this->db->insert_id;
 			}

@@ -6,7 +6,7 @@
 
 
 
-		function get_pqrs($id){
+		function get_pqrs($id = ''){
 
         	$WHERE = '';
 
@@ -43,15 +43,32 @@
 
 		}
 
-		function get_tipo($tipo){
+		function get_tipo($tipo = ''){
+			$tipo = $this->db->real_escape_string($tipo);
+			$WHERE = '';
+			if(!empty($tipo)){
+				$WHERE = "WHERE t.tipo_id = '$tipo'";
+			}
 
+			$sql = "SELECT 
+					t.tipo_id,
+					t.nombre,
+					t.dias
+				FROM tipo_pqr t
+				$WHERE
+				";
 
+			if(count($tipo = $this->query($sql)) > 0){
+				return  $tipo;
+			}
+
+			return false;
 
 		}
 
 
 		function  create($data){
-
+		return $this->insert('pqrs', $data);
 		/*
 			`tipo_id`,
 			`estado`,
