@@ -200,7 +200,7 @@
 									'tipo_id' => $tipo,
 									'user_id' => $user->user_id,
 									'asunto'  => $asunto,
-									'creado'	  => date('Y-m-d H:i:s'),
+									'creado'  => date('Y-m-d H:i:s'),
 									'vence'   => $vence,
 									'estado'  => 1,
 
