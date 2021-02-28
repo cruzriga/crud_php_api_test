@@ -1,11 +1,4 @@
-<?php
-include 'core/Config.php';
-include 'core/Constants.php';
-include 'core/MainController.php';
-include 'core/MainModel.php';
-include 'core/Router.php';
-
-$router = new Router();
+<h1>HOLA MUNDO DESDE GIT </h1>
 
 
 
